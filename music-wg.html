@@ -38,7 +38,7 @@ body {
   right: -30px;
   bottom: -30px;
   left: -30px;
-  background-image: url("https://raw.githubusercontent.com/himalayasingh/music-player-1/master/img/_1.jpg");
+  background-image: url("img/1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50%;
@@ -345,11 +345,12 @@ body {
     </div>
     <div id="player-content">
       <div id="album-art">
-        <img src="/img/1.jpg" class="active" id="_1" />
-        <img src="/img/2.jpg" id="_2" />
-        <img src="/img/3.jpg" id="_3" />
-        <img src="/img/4.jpg" id="_4" />
-        <img src="/img/5.jpg" id="_5" />
+        <img src="img/1.jpg" class="active" id="_1" />
+        <img src="img/2.jpg" id="_2" />
+        <img src="img/3.jpg" id="_3" />
+        <img src="img/4.jpg" id="_4" />
+        <img src="img/5.jpg" id="_5" />
+        <img src="img/6.jpg" id="_5" />
         <div id="buffer-box">Buffering ...</div>
       </div>
       <div id="player-controls">
@@ -395,22 +396,27 @@ $(function () {
     "사건의 지평선",
     "태양 물고기",
     "로켓방정식의 저주",
-    "포인트 니모"
+    "포인트 니모",
+    "Drowning",
+    "Square (2017)"
   ];
   const trackNames = [
     "윤하",
     "윤하",
     "윤하",
     "윤하",
-    "윤하"
+    "윤하",
+    "우즈",
+    "백예린 (Yerin Baek)"
   ];
   const albumArtworks = ["_1", "_2", "_3", "_4", "_5"];
   const trackUrl = [
-    "/mp3/1.mp3",
-    "/mp3/2.mp3",
-    "/mp3/3.mp3",
-    "/mp3/4.mp3",
-    "/mp3/5.mp3"
+    "mp3/1.mp3",
+    "mp3/2.mp3",
+    "mp3/3.mp3",
+    "mp3/4.mp3",
+    "mp3/5.mp3",
+    "mp3/6.mp3"
   ];
 
   let bgArtworkUrl,
@@ -601,6 +607,7 @@ $(function () {
 
   function initPlayer() {
     audio = new Audio();
+    audio.volume = 0.3;
 
     selectTrack(0);
 
@@ -617,6 +624,10 @@ $(function () {
     sArea.on("click", playFromClickedPos);
 
     $(audio).on("timeupdate", updateCurrTime);
+
+    $(audio).on("ended", function () {
+      selectTrack(1);
+    });
 
     playPreviousTrackButton.on("click", function () {
       selectTrack(-1);
